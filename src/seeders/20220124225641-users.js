@@ -9,6 +9,8 @@ module.exports = {
       last_name: '1',
       email: 'user1@mail.com',
       password: hashPassword('password'),
+      createdAt: new Date(),
+      updatedAt: new Date()
 
     }], {});
 
