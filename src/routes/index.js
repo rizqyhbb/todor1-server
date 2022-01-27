@@ -3,7 +3,8 @@ const ROUTES_PARAMS = {
 }
 
 const API_ROUTES = {
-  ROOT: '/'
+  ROOT: '/',
+  REGISTER: '/register'
 }
 
 module.exports = {

@@ -2,7 +2,6 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-
     await queryInterface.bulkInsert('todos', [{
       task_id: 'e2cb878c-a7f3-45df-8074-736b24f4116b',
       user_id: 'be8186e4-370c-4a7f-bcfc-4c66e6e0e064',
@@ -16,9 +15,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});
-
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('todos', null, {});
 
