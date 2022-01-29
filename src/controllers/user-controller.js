@@ -7,9 +7,10 @@ class UserController {
             const register = await UserService.register({ email, password, first_name, last_name })
             return res.status(200).json(register)
         } catch (err) {
-            const error = getError(err)
-            console.log(error)
-            return res.status(error.code).json(error)
+            // const error = getError(err)
+            // console.log(error)
+            console.log(err)
+            // return res.status(error.code).json(error)
         }
     }
 }

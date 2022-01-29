@@ -21,12 +21,12 @@ class UserService {
             })
             return user
         } catch (err) {
-            const sequelizeErrorMessage = err.errors[0].message
-            if (sequelizeErrorMessage === ERRORS.BAD_REQUEST) {
-                throw new Error(ERRORS.BAD_REQUEST)
-            }
-
-            throw new Error(ERRORS.INTERNAL_SERVER_ERROR)
+            // const sequelizeErrorMessage = err.errors[0].message
+            // if (sequelizeErrorMessage === ERRORS.BAD_REQUEST) {
+            //     throw new Error(ERRORS.BAD_REQUEST)
+            // }
+            // throw new Error(ERRORS.INTERNAL_SERVER_ERROR)
+            return console.log(err)
         }
     }
 }

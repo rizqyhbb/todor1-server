@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   todos.init({
+    id: {
+      primaryKey: true,
+      allowNull: false,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     id_user: {
       allowNull: false,
       type: DataTypes.UUID,
