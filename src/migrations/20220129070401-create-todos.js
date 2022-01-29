@@ -2,28 +2,26 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('todos', {
-      task_id: {
+      id: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      user_id: {
+      id_user: {
+        allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'user_id'
-        }
+        references: { model: 'users', foreignKey: 'id' }
       },
       task: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       complete: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

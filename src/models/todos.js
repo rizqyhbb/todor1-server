@@ -2,24 +2,21 @@
 const {
   Model
 } = require('sequelize');
+const { Sequelize } = require('.');
 module.exports = (sequelize, DataTypes) => {
   class todos extends Model {
-
     static associate(models) {
-      tasks.belongsTo(users)
+      const todos = sequelize.define('todos')
+      const users = sequelize.define('users')
+      todos.belongsTo(users)
     }
   };
   todos.init({
-    task_id: {
-      primaryKey: true,
+    id_user: {
       allowNull: false,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    },
-    user_id: {
-      type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false
+      references: { model: 'users', foreignKey: 'id' }
     },
     task: {
       type: DataTypes.STRING,
@@ -27,13 +24,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     complete: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      allowNull: false
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     sequelize,
     modelName: 'todos',
-    underscored: true
+    underscored: true,
   });
   return todos;
 };

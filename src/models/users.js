@@ -1,45 +1,51 @@
 'use strict';
 const {
-  Model
+  Model, ForeignKeyConstraintError
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class users extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      users.hasMany(tasks, { foreignKey: 'user_id' })
+      const users = sequelize.define('usera')
+      const todos = sequelize.define('todos')
+      users.hasMany(todos, { foreignkey: 'id_user' })
     }
   };
   users.init({
-    user_id: {
-      allowNull: false,
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defualtValue: DataTypes.UUIDV4
-    },
-    first_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    last_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
+      validate: {
+        isEmail: {
+          msg: "bad request"
+        },
+      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isAlpha: {
+          msg: 'bad request'
+        }
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isAlpha: {
+          msg: 'bad request'
+        }
+      }
     }
   }, {
     sequelize,
     modelName: 'users',
-    underscored: 'true'
   });
   return users;
 };
