@@ -4,7 +4,9 @@ const ROUTES_PARAMS = {
 
 const API_ROUTES = {
   ROOT: '/',
-  REGISTER: '/register'
+  REGISTER: '/register',
+  LOGIN: '/login',
+  TASKS: '/tasks'
 }
 
 module.exports = {

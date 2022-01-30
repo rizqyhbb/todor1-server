@@ -21,11 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate: {
-        isEmail: {
-          msg: "bad request"
-        },
-      }
     },
     password: {
       type: DataTypes.STRING,
@@ -34,20 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: {
-          msg: 'bad request'
-        }
-      }
     },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: {
-          msg: 'bad request'
-        }
-      }
     }
   }, {
     sequelize,
