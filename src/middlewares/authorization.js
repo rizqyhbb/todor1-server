@@ -21,7 +21,7 @@ const authorization = async (req, res, next) => {
 
   } catch (err) {
     const error = getError(err)
-    console.log(err)
+    console.log(error)
     return res.status(error.code).json(error.message)
   }
 }

@@ -42,6 +42,20 @@ class TaskService {
       throw new Error(ERRORS.INTERNAL_SERVER_ERROR)
     }
   }
+
+  static updateStatus = async ({ id, complete }) => {
+    try {
+      const update = await todos.update({ complete }, {
+        where: {
+          id
+        }, returning: true
+      })
+
+      return update
+    } catch (err) {
+      throw err
+    }
+  }
 }
 
 module.exports = TaskService

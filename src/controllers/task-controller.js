@@ -32,12 +32,26 @@ class TaskController {
   static deleteTask = async (req, res) => {
     try {
       const { id } = req.params
-      const deleteTask = await TaskService.deleteTask(id)
-      return res.status(200).json(deleteTask)
+      await TaskService.deleteTask(id)
+      return res.status(200).json({ message: 'Task Deleted' })
     } catch (err) {
       const error = getError(err);
       console.log(error);
       return res.status(error.code).json(error.message)
+    }
+  }
+
+  static updateStatus = async (req, res) => {
+    try {
+      const { id } = req.params
+      const { complete } = req.body
+      const updateStatus = await TaskService.updateStatus({ id, complete })
+      return res.status(200).json(updateStatus)
+    } catch (err) {
+      const error = getError(err)
+      console.log(error)
+      return res.status(error.code).json(error.message)
+
     }
   }
 }

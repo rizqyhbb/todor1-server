@@ -14,4 +14,5 @@ router.use(authentication)
 router.get(API_ROUTES.TASKS, TaskController.getAllTask)
 router.post(API_ROUTES.TASKS, TaskController.addTask)
 router.delete(API_ROUTES.TASKS_BY_ID, [authorization], TaskController.deleteTask)
+router.patch(API_ROUTES.TASKS_BY_ID, [authorization], TaskController.updateStatus)
 module.exports = router
