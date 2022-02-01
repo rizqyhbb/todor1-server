@@ -33,6 +33,10 @@ class BaseController {
         code: 403,
         message: 'Forbidden'
       }
+      case ERRORS.NOT_FOUND: return {
+        code: 404,
+        message: 'Not Found'
+      }
       case ERRORS.INTERNAL_SERVER_ERROR: return {
         code: 500,
         message: 'Internal Server Error'

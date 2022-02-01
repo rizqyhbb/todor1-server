@@ -1,26 +1,25 @@
 const jwt = require('jsonwebtoken')
 const ERRORS = require("../config/errors")
+const { getError } = require('../controllers/base-controller')
 
 const authentication = async (req, res, next) => {
   try {
     const authHeaders = req.headers.authorization
     if (!authHeaders) {
-      return res.status(401).json({
-        message: 'Unauthorized'
-      })
+      throw new Error(ERRORS.UNAUTHORIZED)
     }
     const token = authHeaders && authHeaders.split(' ')[1]
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
       if (err) {
-        return res.status(403).json({
-          message: 'Forbidden'
-        })
+        throw new Error(ERRORS.FORBIDDEN)
       }
       req.user = user
       next()
     })
   } catch (err) {
-    throw err
+    const error = getError(err)
+    console.log(error)
+    return res.status(error.code).json(error.message)
   }
 }
 

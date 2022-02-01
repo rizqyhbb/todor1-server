@@ -22,15 +22,25 @@ class TaskService {
       if (isEmpty(task)) {
         throw new Error(ERRORS.INPUT_CANNOT_BE_EMPTY)
       }
-      const createTask = await todos.create({
+      const create = await todos.create({
         id_user: id,
         task
       })
-      return createTask;
+      return create;
     } catch (err) {
       throw err
     }
+  }
 
+  static deleteTask = async (id) => {
+    try {
+      const destroy = await todos.destroy({
+        where: { id }
+      })
+      return destroy
+    } catch (err) {
+      throw new Error(ERRORS.INTERNAL_SERVER_ERROR)
+    }
   }
 }
 

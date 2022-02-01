@@ -7,6 +7,7 @@ const ERRORS = {
   PASSWORD_MISMATCH: 'password mismatch',
   UNAUTHORIZED: 'unauthorized',
   FORBIDDEN: 'forbidden',
+  NOT_FOUND: 'not found',
 }
 
 module.exports = ERRORS
