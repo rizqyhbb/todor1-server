@@ -5,12 +5,16 @@ const authentication = async (req, res, next) => {
   try {
     const authHeaders = req.headers.authorization
     if (!authHeaders) {
-      throw new Error(ERRORS.UNAUTHORIZED)
+      return res.status(401).json({
+        message: 'Unauthorized'
+      })
     }
     const token = authHeaders && authHeaders.split(' ')[1]
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
       if (err) {
-        throw new Error(ERRORS.FORBIDDEN)
+        return res.status(403).json({
+          message: 'Forbidden'
+        })
       }
       req.user = user
       next()

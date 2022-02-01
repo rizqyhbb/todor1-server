@@ -11,9 +11,23 @@ class TaskController {
     } catch (err) {
       const error = getError(err);
       console.log(error)
-      res.status(error.code).json(error)
+      res.status(error.code).json(error.message)
     }
+  }
 
+  static addTask = async (req, res) => {
+    try {
+      const { id } = req.user
+      const { task } = req.body
+      const addTask = await TaskService.addTask({ id, task })
+      return res.status(200).json(addTask)
+
+    } catch (err) {
+      const error = getError(err)
+      console.log(error)
+      return res.status(error.code).json(error.message)
+
+    }
   }
 }
 

@@ -21,7 +21,5 @@
     "node": "16.13.2",
     "yarn": "1.22.17"
   },
-  "devDependencies": {
-    "sequelize-cli": "^6.4.1"
-  }
+  "devDependencies": {}
 }

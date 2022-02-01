@@ -9,19 +9,19 @@ class UserController {
         } catch (err) {
             const error = getError(err)
             console.log(error)
-            return res.status(error.code).json(error)
+            return res.status(error.code).json(error.message)
         }
     }
 
     static login = async (req, res) => {
         try {
             const { email, password } = req.body
-            const login = await UserService.auth({ email, password })
-            return res.status(200).json(login)
+            const auth = await UserService.auth({ email, password })
+            return res.status(200).json(auth)
         } catch (err) {
             const error = getError(err)
             console.log(error)
-            return res.status(error.code).json(error)
+            return res.status(error.code).json(error.message)
         }
     }
 }

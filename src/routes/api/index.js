@@ -11,4 +11,5 @@ router.post(API_ROUTES.LOGIN, UserController.login)
 
 router.use(authentication)
 router.get(API_ROUTES.TASKS, TaskController.getAllTask)
+router.post(API_ROUTES.TASKS, TaskController.addTask)
 module.exports = router
